@@ -1,0 +1,105 @@
+{
+	"name": "clvbrew-obf",
+	"displayName": "clvbrew-obf",
+	"description": "utility for clvbrew lua & lua-u script obfuscator",
+	"publisher": "juniorjacob",
+	"repository": {},
+	"icon": "icon.png",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.45.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"configuration": {
+			"title": "clvbrew-obf",
+			"properties": {
+				"clvbrew.output type": {
+					"type": "string",
+					"default": "copy to clipboard",
+					"description": "location to place obfuscated script",
+					"enum": [
+						"replace current file",
+						"create new file",
+						"copy to clipboard"
+					],
+					"enumDescriptions": [
+						"replaces current document with obfuscated script",
+						"creates new document with obfuscated script as contents",
+						"copies obfuscated script to clipboard"
+					]
+				},
+				"clvbrew.api key": {
+					"type": "string",
+					"default": "",
+					"description": "the api key for clvbrew api end-point"
+				},
+				"clvbrew.encrypt all strings": {
+					"type": "boolean",
+					"default": false,
+					"description": "encrypts all constant strings"
+				},
+				"clvbrew.encrypt important strings": {
+					"type": "boolean",
+					"default": false,
+					"description": "encrypts all important strings (ex: 'http', 'https', 'getrawmetatable', etc.)"
+				},
+				"clvbrew.no control flow": {
+					"type": "boolean",
+					"default": false,
+					"description": "remove control flow obfuscation (improves performance, degrades security)"
+				},
+				"clvbrew.debug info": {
+					"type": "boolean",
+					"default": false,
+					"description": "keep debug information (larger file size, breaks level based enviroment gathering ( ex: getfenv(2) ), better error messages)"
+				},
+				"clvbrew.no compression bullshit": {
+					"type": "boolean",
+					"default": false,
+					"description": "removes compression on bytecode and constant encryption (possibly higher constant security, larger file size)"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "clvbrew.obfuscate",
+				"title": "clvbrew | obfuscate current script"
+			},
+			{
+				"command": "clvbrew.changelog",
+				"title": "clvbrew | show current changelog"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.45.0",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.2",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.0"
+	},
+	"__metadata": {
+		"id": "99a26592-3ef4-4406-a45d-09f2fe8494af",
+		"publisherId": "9de75e9a-0345-4b2c-a549-c4196a70a0ff",
+		"publisherDisplayName": "juniorjacob"
+	}
+}
