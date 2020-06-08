@@ -5,3 +5,7 @@ allows for click of a button obfuscation, updated changelog view, and complete o
 
 requires node-fetch in order to build
 settings can be found at file -> preferences -> settings -> extensions -> clvbrew
+
+# credits
+
+original creator is Burkino, his own extension can be found in vscode's extension manager named under Clvbrew
