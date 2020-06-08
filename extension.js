@@ -26,7 +26,7 @@ function activate(context) {
 
 	let disposable = vscode.commands.registerCommand('clvbrew.obfuscate', function () {
 		const settings = vscode.workspace.getConfiguration('clvbrew-obf')
-		if (!settings || settings['api key'] == "" || !vscode.window.activeTextEditor) {
+		if (!settings || settings['api_key'] == "" || !vscode.window.activeTextEditor) {
 			vscode.window.showErrorMessage("api key is necessary for usage of extension")
 			return
 		}
@@ -42,13 +42,13 @@ function activate(context) {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				key: settings['api key'],
+				key: settings['api_key'],
 				script: vscode.window.activeTextEditor.document.getText(),
-				encAllStrings: settings['encrypt all strings'],
-				encImportantStrings: settings['encrypt important strings'],
-				noControlFlow: settings['no control flow'],
-				debugInfo: settings['debug info'],
-				noCompressBS: settings['no compression bullshit']
+				encAllStrings: settings['encrypt_all_strings'],
+				encImportantStrings: settings['encrypt_important_strings'],
+				noControlFlow: settings['no_control_flow'],
+				debugInfo: settings['debug_info'],
+				noCompressBS: settings['no_compression_bullshit']
 			  })
 		})
 		.then(res => {
@@ -58,18 +58,19 @@ function activate(context) {
 			return res.text()
 		})
 		.then(text => {
-			if (settings['output type'] == 'create new file') {
-				vscode.workspace.openTextDocument({"content":`${text}`,"language":"lua"})
+			if (settings['output_type'] == 'create new file') {
+				vscode.workspace.openTextDocument({"content": `${text}`, "language": "lua"})
 				vscode.window.showInformationMessage("obfuscated, opening new tab")
-			} else if (settings['output type'] == 'replace current file') {
+			} else if (settings['output_type'] == 'replace current file') {
 				vscode.window.activeTextEditor.edit(editBuilder => {editBuilder.replace(fullRange, text)})
 				vscode.window.showInformationMessage("obfuscated, and replaced current file")
-			} else if (settings['output type'] == 'copy to clipboard') {
+			} else if (settings['output_type'] == 'copy to clipboard') {
 				vscode.env.clipboard.writeText(text);
 				vscode.window.showInformationMessage("obfuscated, copied to clipboard")
 			}
 		})
-		.catch(function() {
+		.catch(function(reason) {
+			console.log(settings['api_key'])
 			vscode.window.showErrorMessage('invalid api key detected, use !api or !resetapi to get your key')
 		})
 

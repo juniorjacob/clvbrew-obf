@@ -20,7 +20,7 @@
 		"configuration": {
 			"title": "clvbrew-obf",
 			"properties": {
-				"clvbrew.output type": {
+				"clvbrew-obf.output type": {
 					"type": "string",
 					"default": "copy to clipboard",
 					"description": "location to place obfuscated script",
@@ -35,32 +35,32 @@
 						"copies obfuscated script to clipboard"
 					]
 				},
-				"clvbrew.api key": {
+				"clvbrew-obf.api_key": {
 					"type": "string",
 					"default": "",
 					"description": "the api key for clvbrew api end-point"
 				},
-				"clvbrew.encrypt all strings": {
+				"clvbrew-obf.encrypt_all_strings": {
 					"type": "boolean",
 					"default": false,
 					"description": "encrypts all constant strings"
 				},
-				"clvbrew.encrypt important strings": {
+				"clvbrew-obf.encrypt_important_strings": {
 					"type": "boolean",
 					"default": false,
 					"description": "encrypts all important strings (ex: 'http', 'https', 'getrawmetatable', etc.)"
 				},
-				"clvbrew.no control flow": {
+				"clvbrew-obf.no_control_flow": {
 					"type": "boolean",
 					"default": false,
 					"description": "remove control flow obfuscation (improves performance, degrades security)"
 				},
-				"clvbrew.debug info": {
+				"clvbrew-obf.debug_info": {
 					"type": "boolean",
 					"default": false,
 					"description": "keep debug information (larger file size, breaks level based enviroment gathering ( ex: getfenv(2) ), better error messages)"
 				},
-				"clvbrew.no compression bullshit": {
+				"clvbrew-obf.no_compression_bullshit": {
 					"type": "boolean",
 					"default": false,
 					"description": "removes compression on bytecode and constant encryption (possibly higher constant security, larger file size)"
@@ -69,11 +69,11 @@
 		},
 		"commands": [
 			{
-				"command": "clvbrew.obfuscate",
+				"command": "clvbrew-obf.obfuscate",
 				"title": "clvbrew | obfuscate current script"
 			},
 			{
-				"command": "clvbrew.changelog",
+				"command": "clvbrew-obf.changelog",
 				"title": "clvbrew | show current changelog"
 			}
 		]
