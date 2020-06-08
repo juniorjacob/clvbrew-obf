@@ -61,9 +61,12 @@ function activate(context) {
 			if (settings['output type'] == 'create new file') {
 				vscode.workspace.openTextDocument({"content":`${text}`,"language":"lua"})
 				vscode.window.showInformationMessage("obfuscated, opening new tab")
-			} else if (settings['OutputType'] == 'replace current file') {
+			} else if (settings['output type'] == 'replace current file') {
 				vscode.window.activeTextEditor.edit(editBuilder => {editBuilder.replace(fullRange, text)})
 				vscode.window.showInformationMessage("obfuscated, and replaced current file")
+			} else if (settings['output type'] == 'copy to clipboard') {
+				vscode.env.clipboard.writeText(text);
+				vscode.window.showInformationMessage("obfuscated, copied to clipboard")
 			}
 		})
 		.catch(function() {
