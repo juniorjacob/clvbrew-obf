@@ -3,7 +3,7 @@
 	"displayName": "clvbrew-obf",
 	"description": "utility for clvbrew lua & lua-u script obfuscator",
 	"publisher": "juniorjacob",
-	"repository": {},
+	"repository": "https://github.com/juniorjacob/clvbrew-obf",
 	"icon": "icon.png",
 	"version": "1.0.3",
 	"engines": {

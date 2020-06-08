@@ -70,7 +70,6 @@ function activate(context) {
 			}
 		})
 		.catch(function(reason) {
-			console.log(settings['api key'])
 			vscode.window.showErrorMessage('invalid api key detected, use !api or !resetapi to get your key')
 		})
 
