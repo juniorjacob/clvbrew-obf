@@ -5,7 +5,7 @@
 	"publisher": "juniorjacob",
 	"repository": {},
 	"icon": "icon.png",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"engines": {
 		"vscode": "^1.45.0"
 	},
@@ -35,32 +35,32 @@
 						"copies obfuscated script to clipboard"
 					]
 				},
-				"clvbrew-obf.api_key": {
+				"clvbrew-obf.api key": {
 					"type": "string",
 					"default": "",
 					"description": "the api key for clvbrew api end-point"
 				},
-				"clvbrew-obf.encrypt_all_strings": {
+				"clvbrew-obf.encrypt all strings": {
 					"type": "boolean",
 					"default": false,
 					"description": "encrypts all constant strings"
 				},
-				"clvbrew-obf.encrypt_important_strings": {
+				"clvbrew-obf.encrypt important strings": {
 					"type": "boolean",
 					"default": false,
 					"description": "encrypts all important strings (ex: 'http', 'https', 'getrawmetatable', etc.)"
 				},
-				"clvbrew-obf.no_control_flow": {
+				"clvbrew-obf.no control flow": {
 					"type": "boolean",
 					"default": false,
 					"description": "remove control flow obfuscation (improves performance, degrades security)"
 				},
-				"clvbrew-obf.debug_info": {
+				"clvbrew-obf.debug info": {
 					"type": "boolean",
 					"default": false,
 					"description": "keep debug information (larger file size, breaks level based enviroment gathering ( ex: getfenv(2) ), better error messages)"
 				},
-				"clvbrew-obf.no_compression_bullshit": {
+				"clvbrew-obf.no compression bullshit": {
 					"type": "boolean",
 					"default": false,
 					"description": "removes compression on bytecode and constant encryption (possibly higher constant security, larger file size)"
