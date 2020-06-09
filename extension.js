@@ -33,19 +33,18 @@ function activate(context) {
 			return
 		}
 
-		const fullRange = new vscode.Range(
-			vscode.window.activeTextEditor.document.positionAt(0),
-			vscode.window.activeTextEditor.document.positionAt(
-				vscode.window.activeTextEditor.document.getText().length
-			)
-		)
+		var text_editor = vscode.window.activeTextEditor
 
+		// notification
+		vscode.window.showInformationMessage("obfuscation starting, this might take a while")
+
+		// send obfuscation request
 		fetch(constants["obfuscate-url"], {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
 				key: settings['api key'],
-				script: vscode.window.activeTextEditor.document.getText(),
+				script: text_editor.document.getText(),
 				encAllStrings: settings['encrypt all strings'],
 				encImportantStrings: settings['encrypt important strings'],
 				noControlFlow: settings['no control flow'],
@@ -74,7 +73,14 @@ function activate(context) {
 				vscode.workspace.openTextDocument({"content": `${text}`, "language": "lua"})
 				vscode.window.showInformationMessage("obfuscated, opening new tab")
 			} else if (settings['output type'] == 'replace current file') {
-				vscode.window.activeTextEditor.edit(editBuilder => {editBuilder.replace(fullRange, text)})
+				// get range object for current editor
+				var editor_full_range = new vscode.Range(
+					text_editor.document.positionAt(0),
+					text_editor.document.positionAt( text_editor.document.getText().length )
+				)
+				
+				// replace current editor text with new text, requires range object
+				text_editor.edit(editBuilder => {editBuilder.replace(editor_full_range, text)})
 				vscode.window.showInformationMessage("obfuscated, and replaced current file")
 			} else if (settings['output type'] == 'copy to clipboard') {
 				vscode.env.clipboard.writeText(text);
