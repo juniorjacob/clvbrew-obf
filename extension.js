@@ -1,3 +1,5 @@
+// note: make all syntax use semicolon sometime...
+
 // dependencies
 const vscode = require('vscode');
 const fetch = require('.\\node_modules\\node-fetch');
@@ -58,6 +60,16 @@ function activate(context) {
 			return res.text()
 		})
 		.then(text => {
+			// check for errors
+			if (text.includes("Obfuscation error")) {
+				vscode.window.showErrorMessage('syntax issue in script found, validate your code')
+				return
+			} else if (text.includes("DOCTYPE")) {
+				vscode.window.showErrorMessage('heroku error occured during obfuscation, re-run process')
+				return
+			}
+
+			// determine output type & act on it
 			if (settings['output type'] == 'create new file') {
 				vscode.workspace.openTextDocument({"content": `${text}`, "language": "lua"})
 				vscode.window.showInformationMessage("obfuscated, opening new tab")
